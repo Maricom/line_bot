@@ -1,10 +1,11 @@
 import axios from 'axios'
+import messageData from './gameMessage'
 
 exports.handler = async function(event, context, callback) {
     const webhookBody = JSON.parse(event.body)
     const targetEvent = webhookBody.events[0]
 
-    const matchResult = targetEvent.message.text.match(/スタート/)
+    const matchResult = targetEvent.message.text.match(/[\d+]|スタート/)
     if (!matchResult) {
         callback(null, {})
     }
@@ -12,38 +13,7 @@ exports.handler = async function(event, context, callback) {
     const data = {
         replyToken: targetEvent.replyToken,
         messages: [
-            {
-                type: 'text',
-                text: 'ぎじゅつしょてんのしめきりまであと７にち、だけどしんちょくは１０ぱーせんとみまん。あなたはどうする？',
-                quickReply: {
-                    items: [
-                        {
-                            type: 'action',
-                            action: {
-                                type: 'message',
-                                label: 'げんかいまでがんばる',
-                                text: '[1] げんかいまでがんばる'
-                            }
-                        },
-                        {
-                            type: 'action',
-                            action: {
-                                type: 'message',
-                                label: 'あきらめる',
-                                text: '[2] あきらめる'
-                            }
-                        },
-                        {
-                            type: 'action',
-                            action: {
-                                type: 'message',
-                                label: 'いか',
-                                text: '[3] いか'
-                            }
-                        }
-                    ]
-                }
-            }
+            messageData[messageKey]
         ]
     }
 
