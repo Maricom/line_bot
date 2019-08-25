@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "netlify-lambda": "^1.6.3"
+  },
+  "scripts": {
+    "build": "netlify-lambda build /src",
+    "serve": "netlify-lambda serve /src"
+  }
+}
