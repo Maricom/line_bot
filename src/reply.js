@@ -20,7 +20,7 @@ exports.handler = async function(event, context, callback) {
         {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer${process.env.CHANNEL_TOKEN}`
+                'Authorization': `Bearer ${process.env.CHANNEL_TOKEN}`
             }
         }
     )
